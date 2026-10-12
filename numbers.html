@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ナンバーズDX用 ランダム数字生成器</title>
+    <style>
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; text-align: center; background: #f4f7f6; padding: 20px; color: #333; }
+        .container { max-width: 400px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { font-size: 20px; margin-bottom: 20px; color: #ff9900; }
+        label { font-weight: bold; display: block; margin-bottom: 10px; }
+        select { font-size: 16px; padding: 8px 15px; border-radius: 5px; border: 1px solid #ccc; width: 100%; margin-bottom: 20px; }
+        button { font-size: 16px; font-weight: bold; background: #ff9900; color: white; border: none; padding: 12px 20px; border-radius: 25px; width: 100%; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #e08800; }
+        .result-box { margin-top: 25px; text-align: left; }
+        .number-row { font-size: 24px; font-weight: bold; letter-spacing: 5px; background: #fff8e7; border-left: 5px solid #ff9900; padding: 10px; margin-bottom: 10px; border-radius: 0 5px 5px 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎲 ナンバーズDX 数字生成器</h1>
+    
+    <label for="count">生成する枚数を選択：</label>
+    <select id="count">
+        <option value="1">1枚分</option>
+        <option value="3">3枚分</option>
+        <option value="6">6枚分（1日最大）</option>
+        <option value="42">42枚分（1週間フル）</option>
+    </select>
+
+    <button onclick="generateNumbers()">✨ 数字を生成する</button>
+
+    <div class="result-box" id="result"></div>
+</div>
+
+<script>
+function generateNumbers() {
+    const count = document.getElementById('count').value;
+    const resultDiv = document.getElementById('result');
+    resultDiv.innerHTML = ''; // 画面をリセット
+
+    for (let i = 0; i < count; i++) {
+        let digits = [];
+        for (let j = 0; j < 6; j++) {
+            digits.push(Math.floor(Math.random() * 10)); // 0〜9をランダム
+        }
+        
+        const row = document.createElement('div');
+        row.className = 'number-row';
+        row.innerText = digits.join(', ');
+        resultDiv.appendChild(row);
+    }
+}
+</script>
+
+</body>
+</html>
